@@ -20,8 +20,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // 라우트 설정
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+app.get('/api/greeting', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // catch 404 and forward to error handler
