@@ -18,13 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
+console.log(path.join(__dirname, 'client/build'));
 
 // 라우트 설정
 app.get('/api/greeting', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
