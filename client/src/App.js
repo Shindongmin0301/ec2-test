@@ -7,8 +7,13 @@ import Layout from './Components/Layout';
 function App() {
   return (
     <div className="App">
-      <Layout />
-      <Home />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/user" element={<h1>User page</h1>} />
+          <Route path="/about" element={<h1>About page</h1>} />
+        </Route>
+      </Routes>
     </div>
   );
 }
