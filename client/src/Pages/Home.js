@@ -9,9 +9,8 @@ const Home = () => {
 
   useEffect(() => {
     axios('/api').then(res => {
-      console.log(res);
-      console.log(res.request.withCredentials);
-      if (res.withCredentials) {
+      console.log(res.data);
+      if (res.data.secure) {
         setStatus('HTTPS');
         setReverse('HTTP');
         setUrl('www.dongminhttpstest.cf:8080');
@@ -27,9 +26,9 @@ const Home = () => {
     <>
       <h1>Home Page</h1>
       <h2>You are connected by {status} </h2>
-      <p>
+      <Link>
         Go to {reverse}: {url}
-      </p>
+      </Link>
     </>
   );
 };

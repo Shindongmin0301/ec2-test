@@ -22,8 +22,16 @@ const httpsServer = https.createServer(httpsOptions, app);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+app.get('/api', (req, res) => {
+  console.log(req.secure);
+  if (req.secure) {
+    res.json({ secure: true });
+  } else {
+    res.json({ secure: false });
+  }
 });
 
 httpServer.listen(HTTP_PORT, () => {
