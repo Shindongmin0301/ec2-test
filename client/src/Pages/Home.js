@@ -8,7 +8,7 @@ const Home = () => {
   const [url, setUrl] = useState('');
 
   useEffect(() => {
-    axios('/api').then(res => {
+    axios('/api/secure').then(res => {
       console.log(res.data);
       if (res.data.secure) {
         setStatus('HTTPS');

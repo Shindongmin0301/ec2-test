@@ -26,7 +26,7 @@ app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
-app.get('/api', (req, res) => {
+app.get('/api/secure', (req, res) => {
   console.log(req.secure);
   if (req.secure) {
     res.json({ secure: true });
