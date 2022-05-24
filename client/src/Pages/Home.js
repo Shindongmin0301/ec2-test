@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     axios('/api').then(res => {
       console.log(res);
-      console.log(res.withCredentials);
+      console.log(res.request.withCredentials);
       if (res.withCredentials) {
         setStatus('HTTPS');
         setReverse('HTTP');
