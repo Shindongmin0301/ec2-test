@@ -22,8 +22,8 @@ app.set('port', port);
  */
 const httpsOptions = {
   key: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/privkey.pem', 'utf8'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/cert.pem'),
-  ca: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/chain.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/cert.pem', 'utf8'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/chain.pem', 'utf8'),
 };
 
 var server = https.createServer(httpsOptions, app);
