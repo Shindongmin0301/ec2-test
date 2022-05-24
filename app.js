@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
+const path = require('path');
 
 // PORT
 const HTTP_PORT = 8080;
@@ -15,12 +16,15 @@ const httpsOptions = {
 };
 
 const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello EC2 HTTPS SERVER');
-});
 
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(httpsOptions, app);
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 httpServer.listen(HTTP_PORT, () => {
   console.log(`Listening on ${HTTP_PORT}`);
