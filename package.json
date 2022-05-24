@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "start": "cd client && npm install && npm run build && cd .. && node ./bin/www"
+    "all-start": "cd client && npm install && npm run build && cd .. && node ./app.js",
+    "start" : "node ./app.js"
   },
   "dependencies": {
     "axios": "^0.27.2",

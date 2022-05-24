@@ -1,49 +1,31 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// PORT
+const HTTP_PORT = 3000;
+const HTTPS_PORT = 8080;
 
-var app = express();
+// HTTPS OPTIONS
+const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/privkey.pem', 'utf8'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/cert.pem', 'utf8'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/chain.pem', 'utf8'),
+};
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(express.static('public'));
-console.log(path.join(__dirname, 'client/build'));
-
-// 라우트 설정
-app.get('/api/greeting', (req, res) => {
-  res.send('Hello World!');
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello EC2 HTTPS SERVER');
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build', 'index.html'));
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(httpsOptions, app);
+
+httpServer.listen(HTTP_PORT, () => {
+  console.log(`Listening on ${HTTP_PORT}`);
 });
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+httpsServer.listen(HTTPS_PORT, () => {
+  console.log(`Listening on ${HTTPS_PORT}`);
 });
-
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
