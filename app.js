@@ -22,7 +22,8 @@ const httpsServer = https.createServer(httpsOptions, app);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
+  console.log(req.secure);
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
