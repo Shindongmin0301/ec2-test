@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   useEffect(() => {
-    axios('/api');
+    axios('/api').then(res => console.log(res));
   }, []);
 
   return (
