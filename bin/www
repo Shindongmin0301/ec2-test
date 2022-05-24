@@ -4,6 +4,9 @@
  * Module dependencies.
  */
 
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 var app = require('../app');
 var debug = require('debug')('hosting-test:server');
 var http = require('http');
@@ -18,8 +21,13 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
+const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/privkey.pem', 'utf8'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/cert.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/chain.pem'),
+};
 
-var server = http.createServer(app);
+var server = https.createServer(httpsOptions, app);
 
 /**
  * Listen on provided port, on all network interfaces.
