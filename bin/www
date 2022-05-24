@@ -4,7 +4,6 @@
  * Module dependencies.
  */
 
-const http = require('http');
 const https = require('https');
 const fs = require('fs');
 var app = require('../app');
