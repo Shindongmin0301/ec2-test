@@ -1,13 +1,16 @@
+import axios from 'axios';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  useEffect(() => {
+    axios('/api');
+  }, []);
+
   return (
     <>
       <h1>Home Page</h1>
-      <Link to={'/user'} style={{ margin: '1rem' }}>
-        user
-      </Link>
-      <Link to={'/about'}>about</Link>
+      <h2>You are use </h2>
     </>
   );
 };
