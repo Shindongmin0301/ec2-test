@@ -7,17 +7,19 @@ const Home = () => {
   const [reverse, setReverse] = useState('');
   const [url, setUrl] = useState('');
 
+  const httpUrl = 'http://www.dongminhttpstest.cf';
+  const httpsUrl = 'https://www.dongminhttpstest.cf';
   useEffect(() => {
     axios('/api/secure').then(res => {
       console.log(res.data);
       if (res.data.secure) {
         setStatus('HTTPS');
         setReverse('HTTP');
-        setUrl('www.dongminhttpstest.cf:8080');
+        setUrl(httpUrl);
       } else {
         setStatus('HTTP');
         setReverse('HTTPS');
-        setUrl('www.dongminhttpstest.cf:443');
+        setUrl(httpsUrl);
       }
     });
   }, []);
@@ -26,14 +28,7 @@ const Home = () => {
     <>
       <h1>Home Page</h1>
       <h2>You are connected by {status} </h2>
-      Go to {reverse}:{' '}
-      <button
-        onClick={() => {
-          window.location.href(url);
-        }}
-      >
-        Click!
-      </button>
+      Go to {reverse}: <a href={url}>{url}</a>
     </>
   );
 };
