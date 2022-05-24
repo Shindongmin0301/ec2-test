@@ -7,7 +7,7 @@ const Home = () => {
   const [reverse, setReverse] = useState('');
   const [url, setUrl] = useState('');
 
-  const httpUrl = 'http://www.dongminhttpstest.cf';
+  const httpUrl = 'http://www.dongminhttpstest.cf:8080';
   const httpsUrl = 'https://www.dongminhttpstest.cf';
   useEffect(() => {
     axios('/api/secure').then(res => {
