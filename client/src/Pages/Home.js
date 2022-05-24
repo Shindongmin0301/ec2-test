@@ -26,7 +26,7 @@ const Home = () => {
     <>
       <h1>Home Page</h1>
       <h2>You are connected by {status} </h2>
-      Go to {reverse}: <Link>{url}</Link>
+      Go to {reverse}: <Link to={url}>{url}</Link>
     </>
   );
 };
