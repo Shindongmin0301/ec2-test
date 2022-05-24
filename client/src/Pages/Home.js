@@ -26,7 +26,14 @@ const Home = () => {
     <>
       <h1>Home Page</h1>
       <h2>You are connected by {status} </h2>
-      Go to {reverse}: <Link to={'www.naver.com'}>{url}</Link>
+      Go to {reverse}:{' '}
+      <button
+        onClick={() => {
+          window.location.href(url);
+        }}
+      >
+        Click!
+      </button>
     </>
   );
 };
