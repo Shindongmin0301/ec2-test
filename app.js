@@ -4,12 +4,12 @@ const https = require('https');
 const fs = require('fs');
 
 // PORT
-const HTTP_PORT = 3000;
-const HTTPS_PORT = 8080;
+const HTTP_PORT = 8080;
+const HTTPS_PORT = 443;
 
 // HTTPS OPTIONS
 const httpsOptions = {
-  key: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/privkey.pem', 'utf8'),
+  key: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/cert.pem', 'utf8'),
   ca: fs.readFileSync('/etc/letsencrypt/live/www.dongminhttpstest.cf/chain.pem', 'utf8'),
 };
